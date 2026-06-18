@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WEIRD WEB LAB</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: black;
+    color: lime;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  #text {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+  }
+
+  button {
+    position: absolute;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .glitch {
+    animation: glitch 0.2s infinite;
+  }
+
+  @keyframes glitch {
+    0% { transform: translate(0,0); }
+    25% { transform: translate(2px,-2px); }
+    50% { transform: translate(-2px,2px); }
+    75% { transform: translate(2px,2px); }
+    100% { transform: translate(0,0); }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="text">WELCOME TO THE WEIRD WEB</div>
+
+<button onclick="randomize()">CLICK ME</button>
+
+<script>
+const messages = [
+  "SYSTEM OK???",
+  "WHY IS THIS MOVING",
+  "YOU SHOULDN'T BE HERE",
+  "ERROR... OR IS IT?",
+  "THE WEBSITE IS THINKING",
+  "HELLO USER"
+];
+
+function randomize() {
+  document.body.style.background =
+    `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
+
+  document.getElementById("text").innerText =
+    messages[Math.floor(Math.random()*messages.length)];
+
+  document.body.classList.toggle("glitch");
+
+  moveButton();
+}
+
+function moveButton() {
+  const btn = document.querySelector("button");
+  btn.style.left = Math.random() * window.innerWidth + "px";
+  btn.style.top = Math.random() * window.innerHeight + "px";
+}
+
+// random background chaos
+setInterval(() => {
+  document.body.style.background =
+    `hsl(${Math.random()*360}, 100%, 10%)`;
+}, 2000);
+</script>
+
+</body>
+</html>
